@@ -1,0 +1,24 @@
+<!-- main start -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <h3><% include ../partials/head %></h3>
+  </head>
+  <body>
+    <header>
+      <% include ../partials/header %>
+    </header>
+
+<!-- main start -->
+
+
+
+
+
+<!-- main end -->
+
+<footer>
+  <% include ../partials/footer %>
+</footer>
+</body>
+</html>

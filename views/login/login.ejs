@@ -1,0 +1,40 @@
+<!-- main start -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <h3><% include ../partials/head %></h3>
+  </head>
+  <body>
+    <header>
+      <% include ../partials/header %>
+    </header>
+
+<!-- main start -->
+
+<!-- views/Login/Login.ejs -->
+<div class = "login">
+  <div>
+    <h3>Loggin</h3>
+    <form class="login_form" action="/login" method="post">
+      <label>Email</label>
+      <input type="text" name="email" value="">
+      <label>Password</label>
+      <input type="password" name="password" value="">
+      <% loginError.forEach(function(e){ %>
+        <p class="error_message"><%= e %></p>
+      <% }) %>
+      <button class="submit_btn" type="submit">Submit</button>
+    </form>
+    <a href="javascript:history.back()"><button>Back</button>
+  </div>
+</div>
+
+<!-- main end -->
+
+<footer>
+  <% include ../partials/footer %>
+</footer>
+</body>
+</html>
+
+<!-- login end-->

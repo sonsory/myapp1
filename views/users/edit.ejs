@@ -1,0 +1,46 @@
+<!-- main start -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <h3><% include ../partials/head %></h3>
+  </head>
+  <body>
+    <header>
+      <% include ../partials/header %>
+    </header>
+
+<!-- main start -->
+<div class="users">
+  <div class="edit">
+    <h3>Update User Information</h3>
+    <form id="update_user" class="users_form" action="/users/<%= user._id %>?_method=put" method="post"> <!-- suer_.id 라고 써서 오타났었음 -->
+      <label>Current Password* <span id="password_error" class="error_message"><%= passwordError?passwordError: ""%></span></label>
+      <input type="password" id="password" name="user[password]" value="">
+      <br><br>
+      <label>Email* <span id="email_error" class="error_message"> <%= emailError?emailError: "" %> </span></label>
+      <input type="text" id="email" name="user[email]" value="<% formData?formData.email: "" %>">
+      <label>Nickname*<span id="nickname_error" class="error_message"><%= nicknameError?nicknameError: "" %> </span></label>
+      <input type="text" id="nickname" name="user[nickname]" value="<% formData?formData.nickname: "" %>">
+      <label>New Password</label>
+      <input type="password" id="new_password" name="user[newPassword]" value="">
+      <label>Password Confirmation*<span id="password_confirmation_error" class="error_message"></span></label>
+      <input type="password" id="password_confirmation" name="user[passwordConfirmation]" value="">
+      <p><small>*Required</small></p>
+      <input type="button" class="submit_btn" value="Submit">
+    </form>
+    <a herf="javascript:history.back()"><button>Back</button>
+  </div>
+</div>
+
+
+
+<!-- javascript -->
+<script type="text/javascript" src="/js/userform.js"></script>
+
+<!-- main end -->
+
+<footer>
+  <% include ../partials/footer %>
+</footer>
+</body>
+</html>
