@@ -229,9 +229,9 @@ app.post('/posts', isLoggedIn, function(req, res){
 
 app.get('/posts/:id', function(req, res){
   console.log("app.js - app.get('/posts/:id') : req.body -" , req.body , " , res.body ", res.body);
-  Post.findById(req.params.id, function(err, post){
+  Post.findById(req.params.id).populate("author").exec(function(err, post){
     if(err) return res.json({success:false, message:err});
-    res.render("posts/show",{data:post});
+    res.render("posts/show",{data:post, user:req.user});
   });
 });// show
 
