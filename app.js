@@ -26,6 +26,7 @@ db.on("error", function(err){
 var postSchema = mongoose.Schema({
   title: {type:String, required:true},
   body: {type:String, required:true},
+  author: {type:mongoose.Schema.Types.ObjectId, ref:'user', required:true}, //mongoose.Schema.types.,ObjectId 라 써서 에러 났었음.
   createdAt: {type:Date, default:Date.now},
   updatedAt: Date
 });
@@ -204,19 +205,21 @@ app.put('/users/:id',isLoggedIn, checkUserRegValidation, function(req, res){
 
 app.get('/posts', function(req, res){
   //console.log("app.get : req_eventCount : ", req._eventCount);
-  Post.find({}).sort('-createdAt').exec(function (err, posts){
+  Post.find({}).populate("author").sort('-createdAt').exec(function (err, posts){
     if(err) return res.json({success:false, message:err});
     res.render("posts/index", {data:posts, user:req.user});
   });
 }); //index
 
-app.get('/posts/new', function(req, res){ // 여기서는 '/posts/new 로 하고..'
+app.get('/posts/new', isLoggedIn, function(req, res){ // 여기서는 '/posts/new 로 하고..'
   console.log("app.js - app.get('/posts/new')");
-  res.render("posts/new");  //여기서는 "/posts/new" 로 하면 에러남. "posts/new"로 해야함.. why?
+  res.render("posts/new", {user:req.user});  //여기서는 "/posts/new" 로 하면 에러남. "posts/new"로 해야함.. why?
 }); // new
 
-app.post('/posts', function(req, res){
-  console.log("app.js - app.post('/posts')", req.body.post); //req.body.post 는 콘솔에 body:'req.body.post 에 포함된 내용'  출력
+app.post('/posts', isLoggedIn, function(req, res){
+  console.log("app.js - app.post('/posts')", req.body.post);
+   //req.body.post 는 콘솔에 body:'req.body.post 에 포함된 내용'  출력
+  req.body.post.author=req.user._id;
   Post.create(req.body.post, function(err,post){
     if(err) return res.json({success:false, message:err}); // 에러가 난 뒤 다시 뒤로 돌아갈 수 있는 메누가 있었으면...
     res.redirect('/posts');

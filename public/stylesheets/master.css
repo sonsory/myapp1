@@ -98,9 +98,13 @@ footer{
   display:block;
   margin:5px 0;
 }
+
+/* Title */
 .posts .posts_form input[type="text"]{
   width:400px;
 }
+
+/* Body */
 .posts .posts_form textarea{
   display:block;
   margin-bottom:10px;
