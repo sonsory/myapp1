@@ -34,13 +34,15 @@ footer{
 
 .posts,
 .login,
-.users{
+.users,
+.show{
   max-width: 500px;
   margin: 0 auto;
 }
 .posts h3,
 .login h3,
-.users h3{
+.users h3,
+.show h3{
   background-color: #75CEF7;
   padding: 5px 0;
   padding-left: 2px;
@@ -86,7 +88,8 @@ footer{
 }
 .posts .posts_form,
 .login .login_form,
-.users .users_form{
+.users .users_form,
+.show .content{
   display:block;
   width: 400px;
   margin: 0 auto;
