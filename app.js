@@ -21,7 +21,7 @@ db.once("open", function(){
 db.on("error", function(err){
   console.log("DB ERROR :", err);
 });
-
+/////dfdf////
 
 
 //view setting
@@ -54,7 +54,8 @@ app.use('/posts', require('./routes/posts')); //   /posts 에 도달하면 ./rou
 
 
 //start server
-app.listen(3000, function(){
+var port = process.env.PORT || 3000;
+app.listen(port, function(){
   console.log("Server On!");
 });
 
