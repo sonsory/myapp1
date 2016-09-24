@@ -14,13 +14,13 @@ router.get('/new', function(req,res){
                         }
   );
 }); //new
-router.post('/users', checkUserRegValidation, function(req, res, next){
+router.post('/', checkUserRegValidation, function(req, res, next){
   User.create(req.body.user, function (err, user){
     if(err) return res.json({success:false, message:err});
     res.redirect('/login');
   });
 }); //create
-router.get('/users/:id', isLoggedIn, function(req, res){
+router.get('/:id', isLoggedIn, function(req, res){
   User.findById(req.params.id, function (err,user){
     if(err) return res.json({success:false, message:err});
     res.render("users/show", {user: user});
@@ -28,7 +28,7 @@ router.get('/users/:id', isLoggedIn, function(req, res){
 }); //show
 
 
-router.get('/users/:id/edit', isLoggedIn, function(req,res){
+router.get('/:id/edit', isLoggedIn, function(req,res){
   if(req.user._id != req.params.id) return res.json({success:false, message:"Unauthrized Attempt"});
   User.findById(req.params.id, function (err, user){
     if(err) return res.json({success:false, message:err});
@@ -43,7 +43,7 @@ router.get('/users/:id/edit', isLoggedIn, function(req,res){
   });
 }); //edit
 
-router.put('/users/:id',isLoggedIn, checkUserRegValidation, function(req, res){
+router.put('/:id',isLoggedIn, checkUserRegValidation, function(req, res){
   if(req.user._id != req.params.id) return res.json({success:false, message:"Unauthrized Attempt"});
   User.findById(req.params.id, req.body.user, function(err, user) {
     if(err) return res.json({success:"false", message:err});
