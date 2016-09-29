@@ -1,4 +1,3 @@
-<!-- main start -->
 <!DOCTYPE html>
 <html>
   <head>
@@ -8,26 +7,36 @@
     <header>
       <% include ../partials/header %>
     </header>
-
+    <div class = "login">
 <!-- main start -->
 
 <!-- views/Login/Login.ejs -->
-<div class = "login">
-  <div>
-    <h3>Loggin</h3>
-    <form class="login_form" action="/login" method="post">
-      <label>Email</label>
-      <input type="text" name="email" value="">
-      <label>Password</label>
-      <input type="password" name="password" value="">
-      <% loginError.forEach(function(e){ %>
-        <p class="error_message"><%= e %></p>
-      <% }) %>
-      <button class="submit_btn" type="submit">Submit</button>
-    </form>
-    <a href="javascript:history.back()"><button>Back</button>
-  </div>
+<div class="message"><%= loginMessage %></div>
+<div class="buttons">
+  <button onclick="location.href='/'" class="float_left">Home</button> <!--login.ejs 를 불러들이는 위치에 따라 location.href=""의 주소지가 달라짐. -->
+  <button onclick="location.href='user/new'" class="float_right">Sign Up</button>
 </div>
+<h3>Login</h3>
+<form class="checkValidation" action="/login" method="post">
+  <div class="inputs">
+    <div class="floats">
+      <label>Email</label>
+      <input class="cvRequired" type="text" name="email" cvRqErrMsg="Please enter your login email." cvRqErrTo="#cvRqErrEmail" value="">
+      <div id="cvRqErrEmail" class="message"></div>
+    </div>
+    <div class="floats">
+      <label>Password</label>
+      <input class="cvRequired" type="password" name="password" cvRqErrMsg="Please enter your password" cvRqErrTo="#cvRqErrPassword" value="">
+      <div id="cvRqErrPassword" class="message"></div>
+    </div>
+      <% loginError.forEach(function(e){ %>
+        <div class="message"><%= e %></div>
+      <% }) %>
+  </div>
+  <div class="buttons">
+    <button type="submit">Submit</button>
+  </div>
+</form>
 
 <!-- main end -->
 

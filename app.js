@@ -1,4 +1,3 @@
-//import modules
 var express= require('express');
 var app = express();
 var path = require('path');
@@ -8,11 +7,7 @@ var flash = require('connect-flash');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
-
-
-//connect database
-// mongoose.connect('mongodb://asdf:qwer@ds021326.mlab.com:21326/bcode-test');
-
+// database
 mongoose.connect(process.env.MONGO_DB);
 var db= mongoose.connection;
 db.once("open", function(){
@@ -21,13 +16,11 @@ db.once("open", function(){
 db.on("error", function(err){
   console.log("DB ERROR :", err);
 });
-/////dfdf////
 
-
-//view setting
+//view engine
 app.set("view engine", 'ejs');
 
-//set middlewares
+//middlewares
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));

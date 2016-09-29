@@ -1,4 +1,3 @@
-<!-- main start -->
 <!DOCTYPE html>
 <html>
   <head>
@@ -8,23 +7,30 @@
     <header>
       <% include ../partials/header %>
     </header>
-
+    <div class="users">
 <!-- main start -->
-<div class="show">
-  <h3>User Info</h3>
-  <div class="content">
-    <p class="user_info">Email<small> : <%= user.email %></small></p>
-    <p class="user_info">Nickname<small> : <%= user.nickname %></small></p>
 
-    <a href="/users/<%= user._id %>/edit"><button>Edit</button></a>
+<!-- views/users/show.edj -->
+<div class="show">
+  <div class="buttons floats">
+    <button onclick="location.href='/'">Home</button>
+    <button onclick="location.href='/users/<%= user._id %>/edit'" class="float_right">Edit</button> <!--Check the Error - 'users/<%= user._id %>/edit'  에러남 Cannot GET /users/users/57ec1c6c40835b3134999b55/edit-> '/users/<%= user._id %>/edit' /를 추가 해야함. -->
   </div>
-  <a href="javascript:history.back()"><button>Back</button>
+  <h3>User Info</h3>
+<div class="inputs">
+  <div class="floats">
+  <label>Email</label>
+  <input disabled type="text" value="<%= user.email %>">
+  </div>
+  <div class="floats">
+    <label>Nickname</label>
+    <input disable type="text" value="<%= user.nickname %>">
+  </div>
+</div>
 </div>
 
 
-
 <!-- main end -->
-
 <footer>
   <% include ../partials/footer %>
 </footer>
