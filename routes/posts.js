@@ -4,11 +4,19 @@ var mongoose  = require('mongoose');
 var Post      = require('../models/Post'); console.log("routes/posts 실행");
 
 router.get('/', function(req, res){ //console.log("app.get : req_eventCount : ", req._eventCount);
-  Post.find({}).populate("author").sort('-createdAt').exec(function (err, posts){
+  var page = Math.max(1, req.query.page);
+  var limit = 10;
+  Post.count({}, function(err, count){
     if(err) return res.json({success:false, message:err});
-    res.render("posts/index", {posts:posts, user:req.user, postsMessage:req.flash("postsMessage")[0]});  //posts:posts 에서 앞의 posts를 data로 써놨다가 -> views/posts/index.ejs 에서 <% posts.forEach(function(post){ %> 에러남
+    var skip = (page-1)*limit;
+    var maxPage = Math.ceil(count/limit);
+    Post.find().populate("author").sort('-createdAt').skip(skip).limit(limit).exec(function (err, posts){
+      if(err) return res.json({success:false, message:err});
+      res.render("posts/index", {
+        posts:posts, user:req.user, page:page, maxPage:maxPage, postsMessage:req.flash("postsMessage")[0]});
+     });
   });
-}); //index
+}); //index //posts:posts 에서 앞의 posts를 data로 써놨다가 -> views/posts/index.ejs 에서 <% posts.forEach(function(post){ %> 에러남
 router.get('/new', isLoggedIn, function(req, res){ // 여기서는 '/posts/new 로 하고..'
   res.render("posts/new", {user:req.user});  //여기서는 "/posts/new" 로 하면 에러남. "posts/new"로 해야함.. why?
 });   console.log("app.js - app.get('/posts/new')"); // new
@@ -22,7 +30,7 @@ router.post('/', isLoggedIn, function(req, res){ console.log("app.js - app.post(
 router.get('/:id', function(req, res){ console.log("routes/posts 의 router.get /:id 호출 posts/show로 render");
     Post.findById(req.params.id).populate("author").exec(function(err, post){
     if(err) return res.json({success:false, message:err});
-    res.render("posts/show", {post:post, user:req.user}); //여기  post:post 에서 data:post로 되어 있어서, posts/show.ejs 에서 posts is not defined 에러뜸.
+    res.render("posts/show", {post:post, page:req.query.page, user:req.user}); //여기  post:post 에서 data:post로 되어 있어서, posts/show.ejs 에서 posts is not defined 에러뜸.
   });
 });// show
 router.get('/:id/edit', isLoggedIn, function(req, res){  console.log("routes/posts 의 router.get /:id/edit 호출 posts/edit로 render");

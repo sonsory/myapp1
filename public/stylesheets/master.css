@@ -197,3 +197,9 @@ button:hover{
 .posts textarea{
   width: 280px;
 }
+.pagination {
+  text-align: center;
+}
+.pagination li {
+  display: inline;
+}
