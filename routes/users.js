@@ -5,12 +5,13 @@ var User      = require('../models/User');
 var async     = require('async');
 
 //set user route
-router.get('/new', function(req,res){
-  res.render('users/new',{
+router.get('/new', function(req,res){ console.log("유저 가입 페이지 접속"); // /new로 들어오면 호출되는 부분.
+  res.render('users/new',{    // res.render 의 경우 주소가 /없이 시작, res.redirect의 경우 주소가 /가 있고 시작.
                           formData: req.flash('formData')[0],
                           emailError: req.flash('emailError')[0],
                           nicknameError: req.flash('nicknameError')[0],
                           passwordError: req.flash('passwordError')[0]
+
                         }
   );
 }); //new
@@ -52,14 +53,14 @@ router.put('/:id',isLoggedIn, checkUserRegValidation, function(req, res){
       if(req.body.user.newPassword){
         req.body.user.password = user.hash(req.body.user.newPassword);
       }
-      User.findByIdAndUpdate(req.params.id, req.body.user, function (err, user){ //User.findByIdUpdate 라고써서 에러났었음
+      User.findByIdAndUpdate(req.params.id, req.body.user, function (err, user){ //Check the Error User.findByIdUpdate 라고써서 에러났었음
         if(err) return res.json({success:"false", message:err});
         res.redirect('/users/'+req.params.id);
       });
     } else {
       req.flash("formData", req.body.user);
       req.flash("passwordError", "- Inavalid password");
-      res.redirect('/user/'+req.params.id+"/edit");
+      res.redirect('/users/'+req.params.id+"/edit");  //Check the Error - '/user/'+req.params.id+"/edit" 에러남 -> '/users/'+req.params.id+"/edit"로 s를 추가 해야함.
     }
   });
 }); //update

@@ -22,7 +22,7 @@ $(function(){
         var cvMatErrTo = $(cvMatch.attr("cvMatErrTo"));
         if(cvMatch.val() !== cvMatW.val()){
           isValid = false;
-          cvMatErrto.text(cvMatErrMsg);
+          cvMatErrTo.text(cvMatErrMsg); //CHECK THE ERROR : cvMatErrto 로 써서, 가입시 패스워드와 확인 패스워드가 다른 부분에 대한 에러 못잡음
         } else {
           cvMatErrTo.text("");
         }
