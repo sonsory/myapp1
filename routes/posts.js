@@ -2,26 +2,39 @@ var express   = require('express');
 var router    = express.Router();
 var mongoose  = require('mongoose');
 var Post      = require('../models/Post'); console.log("routes/posts 실행");
+var Counter   = require('../models/Counter');
+var async     = require('async');
+
 
 router.get('/', function(req, res){ //console.log("app.get : req_eventCount : ", req._eventCount);
-  var Counter = require('../models/Counter');
   var visitorCounter = null;
-  Counter.findOne({name:"visitors"}, function(err, counter){
-    if(!err) visitorCounter = counter;
-  });
+  var page = Math.max(1, req.query.page)>1?parseInt(req.query.page):1;
+  var limit = Math.max(1, req.query.limit)>1?parseInt(req.query.page):10;
 
-  var page = Math.max(1, req.query.page);
-  var limit = 10;
+async.waterfall([function(callback){
+  Counter.findOne({name:"visitors"}, function(err, counter){
+    if(err) callback(err);
+    visitorCounter = counter;
+    callback(null);
+  });
+}, function(callback){
   Post.count({}, function(err, count){
-    if(err) return res.json({success:false, message:err});
-    var skip = (page-1)*limit;
-    var maxPage = Math.ceil(count/limit);
-    Post.find().populate("author").sort('-createdAt').skip(skip).limit(limit).exec(function (err, posts){
-      if(err) return res.json({success:false, message:err});
-      res.render("posts/index", {
+    if(err) callback(err);
+    skip = (page-1)*limit;
+    maxPage = Math.ceil(count/limit);
+    callback(null, skip, maxPage);
+  });
+}, function(skip, maxPage, callback){
+    Post.find({}).populate("author").sort('-createdAt').skip(skip).limit(limit).exec(function (err, posts){
+      if(err) callback(err);
+      return res.render("posts/index",{
         posts:posts, user:req.user, page:page, maxPage:maxPage,
-        counter:visitorCounter, postsMessage:req.flash("postsMessage")[0]});
-     });
+        urlQuery:req._parsedUrl.query,
+        counter:visitorCounter, postsMessage:req.flash("postsMessage")[0]
+      });
+    });
+  }], function(err){
+     if(err) return res.json({success:false, message:err});
   });
 }); //index //posts:posts 에서 앞의 posts를 data로 써놨다가 -> views/posts/index.ejs 에서 <% posts.forEach(function(post){ %> 에러남
 router.get('/new', isLoggedIn, function(req, res){ // 여기서는 '/posts/new 로 하고..'
@@ -37,7 +50,7 @@ router.post('/', isLoggedIn, function(req, res){ console.log("app.js - app.post(
 router.get('/:id', function(req, res){ console.log("routes/posts 의 router.get /:id 호출 posts/show로 render");
     Post.findById(req.params.id).populate("author").exec(function(err, post){
     if(err) return res.json({success:false, message:err});
-    res.render("posts/show", {post:post, page:req.query.page, user:req.user}); //여기  post:post 에서 data:post로 되어 있어서, posts/show.ejs 에서 posts is not defined 에러뜸.
+    res.render("posts/show", {post:post, urlQuery:req._parsedUrl.query, user:req.user}); //여기  post:post 에서 data:post로 되어 있어서, posts/show.ejs 에서 posts is not defined 에러뜸.
   });
 });// show
 router.get('/:id/edit', isLoggedIn, function(req, res){  console.log("routes/posts 의 router.get /:id/edit 호출 posts/edit로 render");
