@@ -47,9 +47,9 @@
           <td><%= post.author.nickname %></td>
         </tr>
       <% }) %>
-    </tbody>
-  </table>
-  <ul class="pagination">
+      </tbody>
+    </table>
+    <ul class="pagination">
       <% var offset = 3; %>
       <% for(i=1; i<= maxPage;i++){ %>
         <% if(i<=offset || i>maxPage-offset || (i>=page-(offset-1) && i <= page+(offset-1))){ %>
@@ -63,6 +63,12 @@
         <% } %>
       <% } %>
     </ul>
+    <div class="counter">....
+      <% if(counter) { %> -->
+      ...2 Total .... <%= counter.totalCount %> visitors<br>
+      ...3 (Today: <%= counter.todayCount %>)
+      <% } %>
+    </div>
   </div>
 
 <!-- main end -->

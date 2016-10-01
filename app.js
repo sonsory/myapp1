@@ -5,6 +5,7 @@ var mongoose = require('mongoose');
 var session = require('express-session');
 var flash = require('connect-flash');
 var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
 var methodOverride = require('method-override');
 
 // database
@@ -24,9 +25,11 @@ app.set("view engine", 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(cookieParser());
 app.use(methodOverride("_method"));
 app.use(flash());
 app.use(session({secret:'MySecret'}));
+app.use(countVisitors);
 
 //passport
 var passport = require('./config/passport');
@@ -43,14 +46,41 @@ app.use('/posts', require('./routes/posts')); //   /posts 에 도달하면 ./rou
 // 그렇다 할지라도 ./routes/home (home.js 를 지칭하는 듯 js는 생략가능)에서 render를 하거나 redirect를 하는 경우에는
 // 주소를 모두 다 써야 한다.
 
-
-
-
 //start server
 var port = process.env.PORT || 3000;
 app.listen(port, function(){
   console.log("Server On!");
 });
+
+function countVisitors(req, res, next){
+  if(!req.cookies.count && req.cookies['connect.sid']){
+    res.cookie('count', "", {maxAge: 3600000, httpOnly: true});
+    var now = new Date();
+    var date= now.getFullYear() + "/" + now.getMonth() + "/" + now.getDate();
+    if(date != req.cookies.countDate) {
+      res.cookie("countDate", date, {maxAge: 86400000, httpOnly:true});
+
+    var Counter = require('./models/Counter');
+    Counter.findOne({name:"visitors"}, function(err, counter){
+      if(err) return next();
+      if(counter === null){
+        Counter.create({name:"visitors",totalCount:1, todayCount:1, date:date});
+      } else {
+        counter.totalCount++;
+        if(counter.date == date){
+          counter.todayCount++;
+        } else {
+          counter.todayCount = 1;
+          counter.date = date ;
+        }
+        counter.save();
+      }
+    });
+  }
+}
+return next();
+}
+
 
 
 

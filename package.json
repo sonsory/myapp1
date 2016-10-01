@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start" : "node app.js",
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -14,6 +14,7 @@
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.2",
     "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.3",
     "ejs": "^2.5.2",
     "express": "^4.14.0",
     "express-session": "^1.14.1",

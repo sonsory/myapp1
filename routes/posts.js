@@ -4,6 +4,12 @@ var mongoose  = require('mongoose');
 var Post      = require('../models/Post'); console.log("routes/posts 실행");
 
 router.get('/', function(req, res){ //console.log("app.get : req_eventCount : ", req._eventCount);
+  var Counter = require('../models/Counter');
+  var visitorCounter = null;
+  Counter.findOne({name:"visitors"}, function(err, counter){
+    if(!err) visitorCounter = counter;
+  });
+
   var page = Math.max(1, req.query.page);
   var limit = 10;
   Post.count({}, function(err, count){
@@ -13,7 +19,8 @@ router.get('/', function(req, res){ //console.log("app.get : req_eventCount : ",
     Post.find().populate("author").sort('-createdAt').skip(skip).limit(limit).exec(function (err, posts){
       if(err) return res.json({success:false, message:err});
       res.render("posts/index", {
-        posts:posts, user:req.user, page:page, maxPage:maxPage, postsMessage:req.flash("postsMessage")[0]});
+        posts:posts, user:req.user, page:page, maxPage:maxPage,
+        counter:visitorCounter, postsMessage:req.flash("postsMessage")[0]});
      });
   });
 }); //index //posts:posts 에서 앞의 posts를 data로 써놨다가 -> views/posts/index.ejs 에서 <% posts.forEach(function(post){ %> 에러남
