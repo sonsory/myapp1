@@ -29,6 +29,19 @@ $(function(){
       }
     });
 
+    cvForm.find("input.cvMinLength").each(function(){
+      var cvMinLength = $(this);  //CHECK THE ERROR cvMInLength 라고 써서 글자를 3글자 미만으로 써도 에러 안뜸.
+      var minLength = cvMinLength.attr("cvMinLength");
+      var cvMinLenErrMsg = cvMinLength.attr("cvMinLenErrMsg");
+      var cvMinLenErrTo = $(cvMinLength.attr("cvMinLenErrTo"));
+      if(cvMinLength.val().length < minLength){
+        isValid = false;
+        cvMinLenErrTo.text(cvMinLenErrMsg);
+      }else{
+        cvMinLenErrTo.text("");
+      }
+    });
+
     if(!isValid){
       if(e.preventDefault) e.preventDefault();
       else return false;

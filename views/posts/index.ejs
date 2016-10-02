@@ -22,8 +22,8 @@
       <button class="float_right" onclick="location.href='/logout'">Logout</button>
       <button class="float_right" onclick="location.href='/users/<%= user._id %>'">My Profile (<%= user.nickname %>)</button>
     <% } else { %>
-      <button class="float_right" onclick="location.href='login'">Login</button>
-      <button class="float_right" onclick="location.href='users/new'">Sign Up</button>
+      <button class="float_right" onclick="location.href='/login'">Login</button> <!--CHECK THE ERROR : 경로에서 /를 빼면 홈 첫화면에서는 문제가 없지만, 다른 화면, 예를들어서 특정키워드로 검색한 후 새로 가입하려하거나 로그인하거나 할때, 에러남  -->
+      <button class="float_right" onclick="location.href='/users/new'">Sign Up</button> <!--CHECK THE ERROR :  -->
     <% } %>
   </div>
 <table>
@@ -50,7 +50,7 @@
       </tbody>
     </table>
     <ul class="pagination">
-      <% 
+      <%
         var offset = 3;
         var partialQuery;
         if(urlQuery) partialQuery = "&" + urlQuery.replace(/page=(.*?)(&|$)/ig,"");
@@ -67,14 +67,32 @@
         <% } %>
       <% } %>
     </ul>
-    <div class="counter">
-      <% if(counter) { %>
-      Total <%= counter.totalCount %> visitors<br>
-      (Today: <%= counter.todayCount %>)
-      <% } %>
-      <!--just nothing -->
+    <div class="floats">
+      <div class="counter float_left">
+        <% if(counter) { %>
+        Total <%= counter.totalCount %> visitors<br>
+        (Today: <%= counter.todayCount %>)
+        <% } %>
+        <!--just nothing -->
+      </div>
+      <div class="search float_right">
+        <form class="checkValidation" action="/posts/" id ="search">
+          <select name="searchType">
+            <% var select %>
+            <option value="title,body"
+              <%= search.searchType == "title,body"?select="selected":"" %>>Title+Body</option>
+            <option value="title"
+              <%= search.searchType == "title"?select="selected":"" %>>Title</option>
+            <option value="body"
+              <%= search.searchType == "body"?select="selected":"" %>>Body</option>
+            </select>
+            <input class="cvMinLength" cvMinLength="3" cvMinLenErrTo="#searchError" cvMinLenErrMsg="It should be at least 3 characters" type="text" name="searchText" value="<% select?search.searchText:"" %>">
+            <button type="submit">search</button>
+            <div class="message" id="searchError"></div>
+          </form>
+      </div>
     </div>
-  </div>
+</div>
 
 <!-- main end -->
 
