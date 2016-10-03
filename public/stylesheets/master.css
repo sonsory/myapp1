@@ -46,14 +46,17 @@ footer{
   float: left;
   margin-right: 10px;
 }
-.float_right{
+.float_right {
   float:right;
   margin-left: 10px;
 }
-.message{
+.message {
   display: block;
   clear: both;
   color: tomato;
+}
+.searchHighlight {
+  background-color: yellow;
 }
 table{
   width : 100%;
@@ -248,6 +251,13 @@ select::-ms-expand { /*for IE 11*/
   display: none;
 }
 .posts .index .search button[type='submit']{
+  float: left;
+  color: #714d4d;
+  padding: 2px;
+  margin-left: 2px;
+}
+
+.posts .index .search button[type='button']{
   float: left;
   color: #714d4d;
   padding: 2px;
