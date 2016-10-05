@@ -61,15 +61,37 @@ router.get('/new', isLoggedIn, function(req, res){ // 여기서는 '/posts/new �
   res.render("posts/new", {user:req.user});  //여기서는 "/posts/new" 로 하면 에러남. "posts/new"로 해야함.. why?
 });   console.log("app.js - app.get('/posts/new')"); // new
 router.post('/', isLoggedIn, function(req, res){ console.log("app.js - app.post('/posts')", req.body.post);  //req.body.post 는 콘솔에 body:'req.body.post 에 포함된 내용'  출력
-  req.body.post.author=req.user._id;
-  Post.create(req.body.post, function(err,post){
-    if(err) return res.json({success:false, message:err}); // 에러가 난 뒤 다시 뒤로 돌아갈 수 있는 메누가 있었으면...
-    res.redirect('/posts');
+  async.waterfall([function(callback){
+    Counter.findOne({name:"posts"}, function(err, counter){ console.log("app.js - app.post('/posts')", "if(err)");
+      if(err) callback(err);
+      if(counter){  console.log("app.js - app.post('/posts')", "if(counter)"); console.log("app.js - app.post('/posts')", counter);
+      callback(null, counter);
+      } else { console.log("app.js - app.post('/posts')", "if(counter) else");
+        Counter.create({name:"posts", totalCount:0}, function(err, counter){
+          if(err) return res.json({success:false, message:err}); console.log("app.js - app.post('/posts')", "if(counter) else2");
+          callback(null, counter);
+        });
+      }
+    });
+  }], function(callback, counter){
+    var newPost = req.body.post;
+    newPost.author = req.user._id;
+    newPost.numId = counter.totalCount+1;
+    Post.create(req.body.post, function(err, post){
+      if(err) return res.json({success:false, message:err});
+      counter.totalCount++;
+      counter.save();
+      res.redirect('/posts');
+    });
   });
 }); //create
 router.get('/:id', function(req, res){ console.log("routes/posts 의 router.get /:id 호출 posts/show로 render");
-    Post.findById(req.params.id).populate("author").exec(function(err, post){
+    Post.findById(req.params.id)
+    .populate(['author', 'comments.author'])
+    .exec(function(err, post){
     if(err) return res.json({success:false, message:err});
+    post.views++;
+    post.save();
     res.render("posts/show", {post:post, urlQuery:req._parsedUrl.query, user:req.user, search:createSearch(req.query)}); //여기  post:post 에서 data:post로 되어 있어서, posts/show.ejs 에서 posts is not defined 에러뜸.
   }); //CHECK THE ERROR res.render에서 posts/show 로 search:createSearch(req.query)를 넘겨주는 부분을 깜빡하니, posts/show 에서 search is not defined 되었다고 에러남.
 });// show
@@ -95,6 +117,22 @@ router.delete('/:id', isLoggedIn, function(req, res){ console.log("routes/posts 
     res.redirect('/posts');
   });
 }); //destroy
+router.post('/:id/comments', function(req, res){
+  var newComment = req.body.comment;
+  newComment.author = req.user._id;
+  Post.update({_id:req.params.id}, {$push:{comments:newComment}}, function(err, post){
+    if(err) return res.json({success:false, message:err});
+    res.redirect('/posts/'+req.params.id+"?"+req._parsedUrl.query);
+  });
+}); //create a comment
+router.delete('/:postId/comments/:commentId', function(req, res){ console.log("/postId/comments/commentId :" + req.params.postId);
+  Post.update({_id:req.params.postId},{$pull:{comments:{_id:req.params.commentId}}}, //CHECK THE ERROR router.delete('/:postId/comments/:commentId 에서 /postId 라고 만 씀 : 빼먹음.   Cannot DELETE /posts/57f25a770fda782bac6ccb6f/comments/57f44e45dcf5a22d70192e44?_method=delete&
+    function(err, post){
+        if(err) return res.json({success:false, message:err});
+        res.redirect('/posts/'+req.params.postId+"?"+req._parsedUrl.query.replace(/_method=(.*?)(&|$)/ig,""));
+    });
+}); //destroy a comment
+
 function isLoggedIn(req, res, next){
   if (req.isAuthenticated()){
     return next();
@@ -132,3 +170,11 @@ function createSearch(queries){
   return { searchType : queries.searchType, searchText:queries.searchText,
     findPost:findPost, findUser:findUser, highlight:highlight };
 }
+
+
+// 계속 업데이트 하면서 삭제된 내용. 참고할만한 메모들이 있어서 남김
+// router.post('/', isLoggedIn, function(req, res){ console.log("app.js - app.post('/posts')", req.body.post);  //req.body.post 는 콘솔에 body:'req.body.post 에 포함된 내용'  출력
+// req.body.post.author=req.user._id;
+// Post.create(req.body.post, function(err,post){
+//   if(err) return res.json({success:false, message:err}); // 에러가 난 뒤 다시 뒤로 돌아갈 수 있는 메누가 있었으면...
+//   res.redirect('/posts');

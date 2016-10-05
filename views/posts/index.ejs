@@ -28,13 +28,17 @@
   </div>
 <table>
     <colgroup>
+      <col class="num"/>
       <col class="title"/>
+      <col class="views"/>
       <col class="data"/>
       <col class="author"/>
     </colgrop>
     <thead>
       <tr>
+        <th>Num</th>
         <th>Title</th>
+        <th>Views</th>
         <th>Date</th>
         <th>Author</th>
       </tr>
@@ -42,13 +46,18 @@
     <tbody>
       <% if(posts == null || posts.length == 0){ %>
         <tr class="noData">
-          <td colspan="3">There no data to show </td>
+          <td colspan="5">There no data to show!! </td>
         </tr>
       <% } %>
       <% posts.forEach(function(post){ %>
         <tr onclick="window.location= '/posts/<%= post._id %>?<%= urlQuery %>'">
-          <td class="highlight" data-highlight="<%= search.highlight.title %>"><%= post.title %></td>
-          <td><%= post.getCreatedDate() %> </td>
+          <td><%= post.numId %></td>
+          <td class="highlight" data-highlight="<%= search.highlight.title %>">
+            <%= post.title %>
+            <span class="comments">(<%= post.comments.length %>)</span>
+          </td>
+          <td><%= post.views %></td>
+          <td><%= post.getFormattedDate(post.createdAt) %> </td>
           <td class="highlight" data-highlight="<%= search.highlight.author %>"><%= post.author.nickname %></td>
         </tr>
       <% }) %>
