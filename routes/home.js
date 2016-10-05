@@ -21,4 +21,15 @@ router.get('/logout', function(req, res){
   res.redirect('/');
 });
 
+router.get('/spink', function(req,res){ console.log("spink 페이지 접속"); // /new로 들어오면 호출되는 부분.
+  res.render('users/spink',{    // res.render 의 경우 주소가 /없이 시작, res.redirect의 경우 주소가 /가 있고 시작.
+                          formData: req.flash('formData')[0],
+                          emailError: req.flash('emailError')[0],
+                          nicknameError: req.flash('nicknameError')[0],
+                          passwordError: req.flash('passwordError')[0]
+
+                        }
+  );
+});
+
 module.exports = router;

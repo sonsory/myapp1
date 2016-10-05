@@ -28,6 +28,12 @@ router.get('/:id', isLoggedIn, function(req, res){
     res.render("users/show", {user: user});
   });
 }); //show
+router.get('/:id', isLoggedIn, function(req, res){
+  User.findById(req.params.id, function (err,user){
+    if(err) return res.json({success:false, message:err});
+    res.render("users/spink", {user: user});
+  });
+}); //spink
 
 
 router.get('/:id/edit', isLoggedIn, function(req,res){

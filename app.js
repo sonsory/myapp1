@@ -46,6 +46,7 @@ app.use('/posts', require('./routes/posts')); //   /posts 에 도달하면 ./rou
 // 그렇다 할지라도 ./routes/home (home.js 를 지칭하는 듯 js는 생략가능)에서 render를 하거나 redirect를 하는 경우에는
 // 주소를 모두 다 써야 한다.
 
+
 //start server
 var port = process.env.PORT || 3000;
 app.listen(port, function(){
