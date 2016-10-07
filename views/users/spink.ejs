@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-  <!--  <h3><% include ../partials/spinkhead %> <!--</h3> -->
+    <h3><% include ../partials/spinkhead %> </h3>
+
   </head>
   <body>
     <header>
       <% include ../partials/spinkheader %>
     </header>
-    <div class="users">
+    <div class="users" style="width:100%; max-width: 600px; margin: 0 auto;">
       <!-- main start -->
 
 <!-- views/users/new.ejs -->
@@ -15,179 +16,150 @@
   <h2></h2>
   <p></p>
 
-  <div class="w3-card-4" style="width:100%;">
+
+  <div class="w3-card-4">
     <header class="w3-container w3-blue">
-      <h3>스핀크 이야기</h3>
+      <h3>스핀크 룰</h3>
     </header>
+      <div class="w3-container">
+        스핀크 게임의 룰은 '매우 단순'합니다.
 
-    <div class="w3-container">
-      <p>스핀크(spink)는 고대 마야 문명이 있기 전부터 존재한 것으로 알려져 있습니다. 고대 마야의 모든 사람들은 하루에 한번씩 광장에서 스핀크에 기여할 의무가 있었습니다. 스핀크는 인류의 시작과 중간, 그리고 끝을 마야인들에게 알려주었고, 마야인들은 스핀크를 신으로써 추앙했습니다.
+        30초면 스핀크 룰을 이해할 수 있습니다. <a onclick="this.nextSibling.style.display=(this.nextSibling.style.display=='none')?'block':'none';"href="javascript:void(0)">
+        ... 더 읽기</a><div style="DISPLAY: none">
 
-<p>스핀크는 하루 하루 모든 마야인들의 참여에 의해 지속적으로 그 모양과 형태, 의미가 변화되었고 이를 기반으로 마야인들은 전쟁을 일으키거나 기근을 대비하고, 홍수을 예측했습니다. 고대 마야 문명은 스핀크로부터 시작했다고 해도 과언이 아닐 정도로 거의 모든 행위와 사건, 사고가 스핀크에 기반하여 발생하였고 기록되었습니다.
-</p>
-<p>스핀크로 인해 인류 문명이 급격히 성장하던 시기인 고대 마야 문명의 말기에 특정 세력이 스핀크를 조작하여 세계를 제패하려 하였고 특정 세력의 의도에의해 와전된 스핀크의 의지는 결국 마야 문명 자체를 멸망에 이르게 하고 말았습니다.
-</p>
-<p>스핀크는 구전으로 내려오는 전설처럼 여겨졌습니다. 고대 마야 문명을 연구하는 고고학자들 사이에서 스핀크의 실체가 무엇인지, 어떻게 모든 마야인들의 의지를 기록할 수 있었는지, 어떻게 마야 문명이 스핀크를 기반으로 발전이 가능했었는지에 대한 논의가 간간히 이루어지긴 했지만 어느 누구도 스핀크가 무엇인지 알지 못했습니다.
-</p>
-<p>몇몇 언어학자들은 고고학자들이 발견한 고대 마야의 유물들을 통해 spink가 speak와 think의 어원일 것이라는 주장을 펼치기도 했고, 이들과 함께 연구를 하던 논리학자들과 수학자들은 이러한 사실들을 기반으로, 온라인상에서 이루어지는 가상의 스핀크를 만들기에 이르렀습니다.
-</p>
-<p>이들의 연구에 의하면, 온라인 네트워크 상에서 만들어지는 스핀크의 논리는 생각보다 단순합니다. ..어쩌구 저쩌구...
+        <br><br>
 
 
+        <p><b>룰A.</b> 1, 2, 3만을 사용한다.</p>
+        <p><b>룰B.</b> 같은 숫자 두개가 만나면* 같은 숫자가 된다.</p>
+        <p><b>룰C.</b> 다른 숫자 두개가 만나면* 다른 숫자가 된다.</p>
+        <div style="font-size:6px;"><p>*스핀크 연산(@)을 하면</p></div>
+        <br><br>
+        이해하셨죠? <br> 그렇다면 아래의 빨간색 칸에 들어갈 숫자는 무엇일까요?<br><br>
+        <div style="width:250px; margin: 0 auto;">
+          <button type="button" style="width:27pt" class="btn btn-success">2</button> 와
+          <button type="button" style="width:27pt" class="btn btn-warning">1</button> 이 만나면?
+          <button id="btText_01" type="button" style="width:27pt" class="btn btn-danger">?</button>&nbsp&nbsp<text id="text_01" style="color:red; font-size:8px;"></text>
+        </div>
+        <br>파란색 칸을 클릭해서 빨간색 칸에 들어갈 숫자를 맞춰보세요.<br><br>
+        <div style="margin: 0 auto; text-align:center;">
+            <button id="btText_02" type="button" style="width:27pt" class="btn btn-info" onclick="myFunction0()">?</button>
+            <button type="button" style="width:45pt" class="btn btn-default" onclick="textFunc01()">확인</button><br><br>
+            <p id="text_02" style="color:red;font-size:12px;"></p>
+        </div>
 
-  연구자들이 개념적으로나마 이해하던 스핀크를
+        스핀크는 게임에 참여한 모든 사람이 넣은 숫자들(1~3)로 거대한 체인이 만들어집니다.
+        참여자들이 넣은 숫자들은 순차적으로 서버에 등록되고 순차적인 스핀크 연산을 통해 녹색칸에 위치한 숫자가 만들어집니다. 이 숫자는 보여지지 않습니다.
+        유저는 이 숫자를 예측해야 합니다. 가위바위보와 같은 확률(1/3)입니다. 이후 황색 칸을 클릭하여 숫자를 선택하고, 하늘색 칸을 클릭해서 두 숫자(녹색, 황색칸의 숫자)가 만나 생성될 '예상 숫자'를 선택합니다.
+<br><br>예를들어 아래의 예제에서는 유저가 1, 2, 2(황색칸) 을 선택했고 그 결과값 2, 1, 3(하늘색칸) 을 선택했습니다.
 
-전해오는 구전에 의하면 고대 마야 문명이 멸망한 뒤 스핀크는 방치되었고, 마야인들의 특별한 유전자에 기인한 능력
+        <div style="width: 120px; margin: 0 auto;">
+          <br><br>
+          <button type="button" style="width:27pt" class="btn btn-success">?</button>
+          <button type="button" style="width:27pt" class="btn btn-success">?</button>
+          <button type="button" style="width:27pt" class="btn btn-success">?</button>
 
 
+          <br><br>
+          <button type="button" style="width:27pt" class="btn btn-warning">1</button>
+          <button type="button" style="width:27pt" class="btn btn-warning">2</button>
+          <button type="button" style="width:27pt" class="btn btn-warning">2</button>
 
-기여, 예측, 당시 사람들의 의견과 일치하는 예측자는 그날 최고의 능력치를 부여, 그러나 과한 욕심을 부리면 그나마 받은 능력치도 깎이는...
+          <br><br>
+          <button type="button" style="width:27pt" class="btn btn-danger">?</button>
+          <button type="button" style="width:27pt" class="btn btn-danger">?</button>
+          <button type="button" style="width:27pt" class="btn btn-danger">?</button>
+
+          <br><br>
+          <button type="button" style="width:27pt" class="btn btn-info">2</button>
+          <button type="button" style="width:27pt" class="btn btn-info">1</button>
+          <button type="button" style="width:27pt" class="btn btn-info">3</button>
+
+        </div>
+
+<br><br> 이 때, 가려져 있던 녹색칸의 값이 2, 3, 1 이었다면, 빨간색 칸의 값은 3, 1, 3이 됩니다. 유저가 예측한 값중 2개가 맞았습니다(6/27확률).
+
+        <div style="width: 120px; margin: 0 auto;">
+          <br><br>
+          <button type="button" style="width:27pt" class="btn btn-success">2</button>
+          <button type="button" style="width:27pt" class="btn btn-success">3</button>
+          <button type="button" style="width:27pt" class="btn btn-success">1</button>
 
 
-고대 마야인들에게는 현 인류에게 없는 어떤 특별한 능력이 있어
+          <br><br>
+          <button type="button" style="width:27pt" class="btn btn-warning">1</button>
+          <button type="button" style="width:27pt" class="btn btn-warning">2</button>
+          <button type="button" style="width:27pt" class="btn btn-warning">2</button>
 
+          <br><br>
+          <button type="button" style="width:27pt" class="btn btn-danger">3</button>
+          <button type="button" style="width:27pt" class="btn btn-danger">1</button>
+          <button type="button" style="width:27pt" class="btn btn-danger">3</button>
 
- 마은 것인데, 마야문명의 말기에 스핀크를 조작하려는 불순한 세력이 있었고, 이로 인해 마야문명이 멸망
+          <br><br>
+          <button type="button" style="width:27pt" class="btn btn-info">2</button>
+          <button type="button" style="width:27pt" class="btn btn-info">1</button>
+          <button type="button" style="width:27pt" class="btn btn-info">3</button>
+<br><br>
 
-모든 마야 시민들은 하루에 한번씩 대광장에 와서 스핀크를 의무적으로 스핀크를 만참여해서 만드는  일종의 숫자체인입니다. 모든 마야인들이  </p>
+        </div>
+        이 결과에 따라 유저에게 '오늘의 능력치'가 부여 됩니다. 능력치가 부여되면 자동으로 다른 유저들과 배틀을 합니다.
+        배틀의 '승'과 '패'가 매일 매일 기록되어 유저의 랭킹을 확인할 수 있습니다. 오늘의 능력치가 낮다면 다시 스핑크에
+        참여해서 새로운 '능력치'를 부여받을 수 있습니다. 더 높을 수도 있고 더 낮을 수도 있습니다.
+
+        <br><br>
+        스핀크 체인은 게임에 참여한 모든 사람의 숫자로만 만들어 집니다.
+        그리고 '매우 단순'한 룰과 게임에 참여한 모든 사람의 숫자에 기반하여 게임의 최종 결과가 나옵니다.
+
+        <br><br>
+        Spink's Ranking System
+      <br><br>
+    스핀크가 뭐에요? <button type="button" class="btn btn-default" onclick="spinkEx()">스핀크는...</button><p id="spinkExplain"></p>
+
+        <a onclick="this.parentNode.style.display='none';" href="javascript:void(0)">
+        접기</a>
     </div>
-
-    <div class="w3-container w3-blue">
-      <h5 class="float_right">Join us!</h5>
-
-
-    </div>
+  </div>
+  <div class="w3-container w3-blue">
+    <div class="buttons" style="float: right; margin-right: 10px; height:30pt; display:inline-block"><button type="button" class="btn btn-link"><p style="color:white;">Join</p></button><button type="button" class="btn btn-link"><p style="color:white;">Login</p></button></div>
   </div>
 </div>
 
-<br><br>
-<button id="toggle1" onclick="myFunction1()">1</button>
-<button id="toggle2" onclick="myFunction2()">1</button>
-<button id="toggle3" onclick="myFunction3()">1</button>
-
-<br><br>
-
-<button id="toggle4" onclick="myFunction4()">1</button>
-<button id="toggle5" onclick="myFunction5()">1</button>
-<button id="toggle6" onclick="myFunction6()">1</button>
-
-       <script>
-
-           function myFunction1() {
-               var change = document.getElementById("toggle1");
-               if (change.innerHTML == "2")
-               {
-                   change.innerHTML = "3";
-               }
-               else if (change.innerHTML == "3") {
-
-                   change.innerHTML = "1";
-               }
-               else if (change.innerHTML == "1") {
-
-                   change.innerHTML = "2";
-               }
-           }
-           function myFunction2() {
-               var change = document.getElementById("toggle2");
-               if (change.innerHTML == "2")
-               {
-                   change.innerHTML = "3";
-               }
-               else if (change.innerHTML == "3") {
-
-                   change.innerHTML = "1";
-               }
-               else if (change.innerHTML == "1") {
-
-                   change.innerHTML = "2";
-               }
-           }
-           function myFunction3() {
-               var change = document.getElementById("toggle3");
-               if (change.innerHTML == "2")
-               {
-                   change.innerHTML = "3";
-               }
-               else if (change.innerHTML == "3") {
-
-                   change.innerHTML = "1";
-               }
-               else if (change.innerHTML == "1") {
-
-                   change.innerHTML = "2";
-               }
-           }
-           function myFunction4() {
-               var change = document.getElementById("toggle4");
-               if (change.innerHTML == "2")
-               {
-                   change.innerHTML = "3";
-               }
-               else if (change.innerHTML == "3") {
-
-                   change.innerHTML = "1";
-               }
-               else if (change.innerHTML == "1") {
-
-                   change.innerHTML = "2";
-               }
-           }
-           function myFunction5() {
-               var change = document.getElementById("toggle5");
-               if (change.innerHTML == "2")
-               {
-                   change.innerHTML = "3";
-               }
-               else if (change.innerHTML == "3") {
-
-                   change.innerHTML = "1";
-               }
-               else if (change.innerHTML == "1") {
-
-                   change.innerHTML = "2";
-               }
-           }
-           function myFunction6() {
-               var change = document.getElementById("toggle6");
-               if (change.innerHTML == "2")
-               {
-                   change.innerHTML = "3";
-               }
-               else if (change.innerHTML == "3") {
-
-                   change.innerHTML = "1";
-               }
-               else if (change.innerHTML == "1") {
-
-                   change.innerHTML = "2";
-               }
-           }
-       </script>
-
-      <h4>Fight</h4>
-      <br>
-      <button onclick="move()">Fight</button>
-      <div id="myProgress">
-        <div id="myBar"></div>
-      </div>
 
 
-       <script>
-       function move() {
-         var elem = document.getElementById("myBar");
-         var width = 1;
-         var id = setInterval(frame, 10);
-         function frame() {
-           if (width >= 100) {
-             clearInterval(id);
-           } else {
-             width++;
-             elem.style.width = width + '%';
-           }
-         }
-       }
-       </script>
+<div>
+
+  <div style="width: 120px; margin: 0 auto;">
+  <br><br>
+  <button type="button" style="width:27pt" class="btn btn-success">?</button>
+  <button type="button" style="width:27pt" class="btn btn-success">?</button>
+  <button type="button" style="width:27pt" class="btn btn-success">?</button>
+
+
+  <br><br>
+  <button id="toggle1" type="button" style="width:27pt" class="btn btn-warning" onclick="myFunction1()">1</button>
+  <button id="toggle2" type="button" style="width:27pt" class="btn btn-warning" onclick="myFunction2()">1</button>
+  <button id="toggle3" type="button" style="width:27pt" class="btn btn-warning" onclick="myFunction3()">1</button>
+
+  <br><br>
+  <button type="button" style="width:27pt" class="btn btn-danger">?</button>
+  <button type="button" style="width:27pt" class="btn btn-danger">?</button>
+  <button type="button" style="width:27pt" class="btn btn-danger">?</button>
+
+  <br><br>
+  <button id="toggle4" type="button" style="width:27pt" class="btn btn-info" onclick="myFunction4()">1</button>
+  <button id="toggle5" type="button" style="width:27pt" class="btn btn-info" onclick="myFunction5()">1</button>
+  <button id="toggle6" type="button" style="width:27pt" class="btn btn-info" onclick="myFunction6()">1</button>
+
+  </div>
+</div>
+    <h4>Fight</h4>
+    <br>
+    <button onclick="move()">Fight</button>
+    <div id="myProgress">
+     <div id="myBar"></div>
+    </div>
+
   <br>
 현재스핀크값
   <button onclick="location.href='spinksum'">Home</button>
@@ -278,8 +250,10 @@
           </div>
 <!-- main end -->
 </div>
+
 <footer>
   <% include ../partials/spinkfooter %>
 </footer>
+
 </body>
 </html>
