@@ -19,65 +19,87 @@
 
   <div class="w3-card-4">
     <header class="w3-container w3-blue">
-      <h3>스핀크 룰</h3>
+      <h3>스핀크</h3>
     </header>
       <div class="w3-container">
         스핀크 게임의 룰은 '매우 단순'합니다.
-
-        30초면 스핀크 룰을 이해할 수 있습니다. <a onclick="this.nextSibling.style.display=(this.nextSibling.style.display=='none')?'block':'none';"href="javascript:void(0)">
-        ... 더 읽기</a><div style="DISPLAY: none">
-
-        <br><br>
-
-
+        30초면 스핀크 룰을 이해할 수 있습니다.
+        <div align="right"><button id="button4" style="width:60pt" class="btn btn-default" onclick="button4TextEx()">더읽기</button></div><p></P>
+        <div id="div4" >
+          <div style="position:relative; top:-6; background-color:#cccccc; margin:0; padding:1px;"></div><p></p>
+        <p><h2><small>스핀크 룰</small></h2> </b></p> <!--SPINK's Rules-->
         <p><b>룰A.</b> 1, 2, 3만을 사용한다.</p>
         <p><b>룰B.</b> 같은 숫자 두개가 만나면* 같은 숫자가 된다.</p>
         <p><b>룰C.</b> 다른 숫자 두개가 만나면* 다른 숫자가 된다.</p>
-        <div style="font-size:6px;"><p>*스핀크 연산(@)을 하면</p></div>
-        <br><br>
+              <div style="font-size:6px;"><p>*스핀크 연산(@)을 하면</p></div>
+        <br>
         이해하셨죠? <br> 그렇다면 아래의 빨간색 칸에 들어갈 숫자는 무엇일까요?<br><br>
-        <div style="width:250px; margin: 0 auto;">
-          <button type="button" style="width:27pt" class="btn btn-success">2</button> 와
-          <button type="button" style="width:27pt" class="btn btn-warning">1</button> 이 만나면?
-          <button id="btText_01" type="button" style="width:27pt" class="btn btn-danger">?</button>&nbsp&nbsp<text id="text_01" style="color:red; font-size:8px;"></text>
-        </div>
+              <div style="width:250px; margin: 0 auto;">
+                <button type="button" style="width:27pt" class="btn btn-success">2</button> 와
+                <button type="button" style="width:27pt" class="btn btn-warning">1</button> 이 만나면?
+                <button id="btText_01" type="button" style="width:27pt" class="btn btn-danger">?</button>&nbsp&nbsp<text id="text_01" style="color:red; font-size:8px;"></text>
+              </div>
         <br>파란색 칸을 클릭해서 빨간색 칸에 들어갈 숫자를 맞춰보세요.<br><br>
-        <div style="margin: 0 auto; text-align:center;">
-            <button id="btText_02" type="button" style="width:27pt" class="btn btn-info" onclick="myFunction0()">?</button>
-            <button type="button" style="width:45pt" class="btn btn-default" onclick="textFunc01()">확인</button><br><br>
-            <p id="text_02" style="color:red;font-size:12px;"></p>
+              <div style="margin: 0 auto; text-align:center;">
+                  <button id="btText_02" type="button" style="width:27pt" class="btn btn-info" onclick="myFunction0()">?</button>
+                  <button type="button" style="width:45pt" class="btn btn-default" onclick="textFunc01()">확인</button><br><br>
+                  <p id="text_02" style="color:red;font-size:12px;"></p>
+              </div>
+
+        위의 스핀크룰만 알아도 쉽게 게임에 참여할 수 있습니다. 위의 예제에서 녹색칸의 숫자는 이미 참여했던 사람들의 숫자로 스핀크연산을 해서 만들어져 있습니다. 매순간 변화되고 보여지지 않습니다.
+        <br> 가위바위보와 같습니다. 녹색칸의 숫자를 예상하고 내가 넣은 황색칸의 숫자와 만나 빨간칸에 무슨 숫자가 생성될 지 예측하고 그 값을 하늘색 칸에서 선택하면 됩니다.<br> 아래의 숫자칸을 채워 게임에 바로 참여해보세요.<br><br>
+        <div style="position:relative; top:-6; background-color:#cccccc; margin:0; padding:1px;"></div><p></p>
+
+        <div id="divBtn1_1" style="float:right"><text style="font-size:10px; color:red;">스핀크 게임에 대해 더 자세히 알고 싶다면 클릭!!</text></div><br>
+
+        <div class="wrapper">
+          <div class="contents"><h2><small>스핀크 게임</small></h2></div>
+          <div class="sidebar"><div id="divBtn1"><button id="button1" style="width:90pt;" class="btn btn-default" >상세</button></div><!--divBtn1 end--></div>
         </div>
 
-        스핀크는 게임에 참여한 모든 사람이 넣은 숫자들(1~3)로 거대한 체인이 만들어집니다.
-        참여자들이 넣은 숫자들은 순차적으로 서버에 등록되고 순차적인 스핀크 연산을 통해 녹색칸에 위치한 숫자가 만들어집니다. 이 숫자는 보여지지 않습니다.
-        유저는 이 숫자를 예측해야 합니다. 가위바위보와 같은 확률(1/3)입니다. 이후 황색 칸을 클릭하여 숫자를 선택하고, 하늘색 칸을 클릭해서 두 숫자(녹색, 황색칸의 숫자)가 만나 생성될 '예상 숫자'를 선택합니다.
-<br><br>예를들어 아래의 예제에서는 유저가 1, 2, 2(황색칸) 을 선택했고 그 결과값 2, 1, 3(하늘색칸) 을 선택했습니다.
+        <div id="div1">
 
-        <div style="width: 120px; margin: 0 auto;">
-          <br><br>
-          <button type="button" style="width:27pt" class="btn btn-success">?</button>
-          <button type="button" style="width:27pt" class="btn btn-success">?</button>
-          <button type="button" style="width:27pt" class="btn btn-success">?</button>
+                    스핀크는 게임에 참여한 모든 유저가 선택한 숫자들(1~3)로 거대한 체인이 만들어집니다. 유저는 황색칸과 하늘 색칸만 채우면 됩니다.
+                    유저가 선택한 황색칸의 숫자조합은 순차적으로 서버에 등록되고, 순차적인 스핀크 연산을 통해 녹색 칸에 위치한 숫자가 실시간으로 만들어집니다. 이 녹색칸의 숫자는 유저에게 보여지지 않습니다.
+                    유저는 이 숫자를 예측해야 합니다. 가위바위보처럼요. 이후 황색 칸을 클릭하여 숫자를 선택하고, 하늘색 칸을 클릭해서 두 숫자(녹색, 황색칸의 숫자)가 만나 생성될 '예상 숫자'를 선택합니다.
+                    <br><br>예를들어 아래의 예제에서는 유저가 <br>
+                    황 색 칸 : 1, 2, 2 을 선택했고 그 결과값
+                    하늘색칸 : 2, 1, 3 을 선택했습니다.
+
+                    <div style="width: 120px; margin: 0 auto;">
+                      <br><br>
+                      <button type="button" style="width:27pt" class="btn btn-success">?</button>
+                      <button type="button" style="width:27pt" class="btn btn-success">?</button>
+                      <button type="button" style="width:27pt" class="btn btn-success">?</button>
 
 
-          <br><br>
-          <button type="button" style="width:27pt" class="btn btn-warning">1</button>
-          <button type="button" style="width:27pt" class="btn btn-warning">2</button>
-          <button type="button" style="width:27pt" class="btn btn-warning">2</button>
+                      <br><br>
+                      <button type="button" style="width:27pt" class="btn btn-warning">1</button>
+                      <button type="button" style="width:27pt" class="btn btn-warning">2</button>
+                      <button type="button" style="width:27pt" class="btn btn-warning">2</button>
 
-          <br><br>
-          <button type="button" style="width:27pt" class="btn btn-danger">?</button>
-          <button type="button" style="width:27pt" class="btn btn-danger">?</button>
-          <button type="button" style="width:27pt" class="btn btn-danger">?</button>
+                      <br><br>
+                      <button type="button" style="width:27pt" class="btn btn-danger">?</button>
+                      <button type="button" style="width:27pt" class="btn btn-danger">?</button>
+                      <button type="button" style="width:27pt" class="btn btn-danger">?</button>
 
-          <br><br>
-          <button type="button" style="width:27pt" class="btn btn-info">2</button>
-          <button type="button" style="width:27pt" class="btn btn-info">1</button>
-          <button type="button" style="width:27pt" class="btn btn-info">3</button>
+                      <br><br>
+                      <button type="button" style="width:27pt" class="btn btn-info">2</button>
+                      <button type="button" style="width:27pt" class="btn btn-info">1</button>
+                      <button type="button" style="width:27pt" class="btn btn-info">3</button>
 
-        </div>
+                    </div>
 
-<br><br> 이 때, 가려져 있던 녹색칸의 값이 2, 3, 1 이었다면, 빨간색 칸의 값은 3, 1, 3이 됩니다. 유저가 예측한 값중 2개가 맞았습니다(6/27확률).
+
+                  <br><br> 이 때, 서버에서 계산된 녹색 칸의 값이 2, 3, 1 이었다면,
+
+
+
+    <div id="divBtn2"><button id="button2" style="width:100pt" class="btn btn-default" >예제 결과보기</button><br><br></div> <!--divBtn2 div-->
+
+<div id="div2">
+<br><br>
+빨간색 칸의 값은 3, 1, 3이 됩니다.
 
         <div style="width: 120px; margin: 0 auto;">
           <br><br>
@@ -100,26 +122,76 @@
           <button type="button" style="width:27pt" class="btn btn-info">2</button>
           <button type="button" style="width:27pt" class="btn btn-info">1</button>
           <button type="button" style="width:27pt" class="btn btn-info">3</button>
-<br><br>
+          <br><br>
 
         </div>
-        이 결과에 따라 유저에게 '오늘의 능력치'가 부여 됩니다. 능력치가 부여되면 자동으로 다른 유저들과 배틀을 합니다.
-        배틀의 '승'과 '패'가 매일 매일 기록되어 유저의 랭킹을 확인할 수 있습니다. 오늘의 능력치가 낮다면 다시 스핑크에
-        참여해서 새로운 '능력치'를 부여받을 수 있습니다. 더 높을 수도 있고 더 낮을 수도 있습니다.
 
-        <br><br>
-        스핀크 체인은 게임에 참여한 모든 사람의 숫자로만 만들어 집니다.
-        그리고 '매우 단순'한 룰과 게임에 참여한 모든 사람의 숫자에 기반하여 게임의 최종 결과가 나옵니다.
+        <br><br>위의 예제에서는 유저가 예측한 값 중 2개가 맞았습니다(6/27확률).
 
-        <br><br>
-        Spink's Ranking System
+
+        <div id="divBtn3" class="float: left;"><button id="button3" style="width:70pt" class="btn btn-default" >더보기</button><br><br></div> <!--divBtn3 div end-->
+
+        <div id="div3"><br><br>
+          이 결과에 따라 유저에게 '오늘의 능력치'가 부여 됩니다. 능력치가 부여되면 자동으로 다른 유저들과 배틀을 합니다.
+          배틀의 '승'과 '패'가 매일 매일 기록되어 유저의 랭킹을 확인할 수 있습니다. 오늘의 능력치가 낮다면 다시 스핑크에
+          참여해서 새로운 '능력치'를 부여받을 수 있습니다. 더 높을 수도 있고 더 낮을 수도 있습니다.
+
+          <br><br>
+          스핀크 체인은 게임에 참여한 모든 사람의 숫자로만 만들어 집니다.
+          그리고 '매우 단순'한 룰과 게임에 참여한 모든 사람의 숫자에 기반하여 게임의 최종 결과가 나옵니다.
+
+          <br><br>
+
+
+
+
+
+<!--Spink's Ranking System-->
+        <h2><small>스핀크 랭킹</small></h2> <div id="divBtn6"><button id="button6" style="width:45pt" class="btn btn-default" > SRS</button></div><!--divbtn6 end-->
+        <div id="div6">..............아직 아무것도 안써 있음 ㅋㅋㅋㅋㅋㅋㅋ
+
+
+
+
+
+
+<!--What is the SPINK?, SPINK's story-->
       <br><br>
-    스핀크가 뭐에요? <button type="button" class="btn btn-default" onclick="spinkEx()">스핀크는...</button><p id="spinkExplain"></p>
+    <h2><small>스핀크 이야기</small></h2> <div id="divBtn7"><button id="button7" style="width:45pt" class="btn btn-default">보기</button></div> <!-- divBtn7 end-->
+    <div id="div7">
+      스핀크(spink)는 <a href="http://www.korea.ac.kr/mbshome/mbs/university/index.do">고대</a> 마야 문명이 있기 전부터 존재한 것으로 알려져 있습니다. 고대 마야의 지배계급은 하루에 한번씩 광장에서 스핀크에 기여할 의무가 있었습니다.
+      <br>그들은 자신들의 피로 스핀크에 기여하고 스핀크로부터 힘을 부여받았습니다.
+      <br>이렇게 고대 마야 문명의 중심부에 존재했던 스핀크는 인류의 시작과 중간, 그리고 끝을 마야인들에게 알려주었고, 마야인들은 스핀크를 신으로써 추앙했습니다. 스핀크는 하루 하루 모든 마야인들의 기여에 의해 지속적으로 그 모양과 형태, 의미가 변화되었고 이를 기반으로 마야인들은 전쟁을 일으키거나 기근을 대비하고, 홍수을 예측했습니다. 고대 마야 문명은 스핀크로부터 시작했다고 해도 과언이 아닐 정도로 거의 모든 행위와 사건, 사고가 스핀크에 기반하여 발생하였고 기록되었습니다.</p>
+      <p>스핀크로 인해 인류 문명이 급격히 성장하는 시기였던 고대 마야 말기에, 특정 세력이 스핀크를 조작하여 세계를 제패하려 하였고 특정 세력의 의도에 의해 와전된 스핀크의 의지는 결국 마야 문명 자체를 멸망에 이르게 하고 말았습니다.</p>
+      <p>이후 오랜 시간 동안 스핀크는 구전으로 내려오는 전설처럼 여겨졌습니다. 고대 마야 문명을 연구하는 고고학자들 사이에서 스핀크의 실체가 무엇인지, 어떻게 모든 마야인들의 의지를 기록할 수 있었는지, 어떻게 마야 문명이 스핀크를 기반으로 발전이 가능했었는지에 대한 논의가 간간히 이루어지긴 했지만 어느 누구도 스핀크가 무엇인지 알지 못했습니다.</p>
+      <p>몇몇 의학자들은 고대 마야인들의 두개골 구조 및 이카의 돌과 같은 몇몇의 유물을 통해 마야의 지배계급은 정신적으로 소통이 가능했을 수도 있다는 가설을 내놓았고, 언어학자들은 고고학자들이 발견한 고대 마야의 유물들을 통해 spink가 speak와 think의 어원일 것이라는 주장을 펼치기도 했습니다.
+      <p>그리고 이들과 함께 연구를 하던 논리학자들과 수학자들, 몇몇의 기술자들이 위와 같은 가설들을 기반으로, 정신적 소통과 유사하게 이루어지는 인터넷을 통해 그들의 가설을 검증해보고자 하였습니다. 그들은 인터넷에 가상의 스핀크를 만들기에 이르렀습니다.
+      <p>그것의 시작은 2007년 이었습니다.</p>
+      <p>연구자들이 개념적으로나마 이해하던 스핀크가 지금은 네트워크 상에서 불특정 다수의 사람들에 의해 실시간으로 끊임없이 만들어지고 있습니다. 후속 연구를 통해 과학자들이 알아낸 놀라운 사실, 플라시보 효과, 스핀크에는 그 효과가...  가상의 스핀크는 참여자들의 의 논리는 생각보다 단순합니다. <br>
+      <br>권장하는, 그런 시스템.... 매일의 능력치를 .. 얻어가길, ,
+      <br><br>전해오는 구전에 의하면 고대 마야 문명이 멸망한 뒤 스핀크는 방치되었고, 마야인들의 특별한 유전자에 기인한 능력
+      <br><br>기여, 예측, 당시 사람들의 의견과 일치하는 예측자는 그날 최고의 능력치를 부여, 그러나 과한 욕심을 부리면 그나마 받은 능력치도 깎이는...
+      <br><br>고대 마야인들에게는 현 인류에게 없는 어떤 특별한 능력이 있어
+      <br><br>마은 것인데, 마야문명의 말기에 스핀크를 조작하려는 불순한 세력이 있었고, 이로 인해 마야문명이 멸망
+      <br><br>모든 마야 시민들은 하루에 한번씩 대광장에 와서 스핀크를 의무적으로 스핀크를 만참여해서 만드는  일종의 숫자체인입니다. 모든 마야인들이</p>"
+가상의 스핀크는 온라인 네트워크를 이용해 만들어집니다.
+    </div><!--div7 end-->
+    </div> <!--div6 end-->
+    </div> <!--div3 end-->
+    </div> <!--div2 end-->
+    </div> <!--div1 end-->
 
-        <a onclick="this.parentNode.style.display='none';" href="javascript:void(0)">
-        접기</a>
+    <%# <p id="spinkExplain"></p>%>
+    <p></p><br>
+    <div class="singleWrap">
+      <div class="contents"><h2><small></small></h2></div>
+      <div class="singleSide" style="float: right;"><button id="button5" style="width:60pt" class="btn btn-default" onclick="button4TextEx()">감추기</button></div>
     </div>
-  </div>
+
+
+  </div>  <!--div4 end-->
+</div> <!--<div class="w3-container">-->
+
   <div class="w3-container w3-blue">
     <div class="buttons" style="float: right; margin-right: 10px; height:30pt; display:inline-block"><button type="button" class="btn btn-link"><p style="color:white;">Join</p></button><button type="button" class="btn btn-link"><p style="color:white;">Login</p></button></div>
   </div>
@@ -131,9 +203,9 @@
 
   <div style="width: 120px; margin: 0 auto;">
   <br><br>
+  <%# <button type="button" style="width:27pt" class="btn btn-success">?</button>
   <button type="button" style="width:27pt" class="btn btn-success">?</button>
-  <button type="button" style="width:27pt" class="btn btn-success">?</button>
-  <button type="button" style="width:27pt" class="btn btn-success">?</button>
+  <button type="button" style="width:27pt" class="btn btn-success">?</button>%>
 
 
   <br><br>
@@ -142,11 +214,12 @@
   <button id="toggle3" type="button" style="width:27pt" class="btn btn-warning" onclick="myFunction3()">1</button>
 
   <br><br>
+  <%# <button type="button" style="width:27pt" class="btn btn-danger">?</button>
   <button type="button" style="width:27pt" class="btn btn-danger">?</button>
   <button type="button" style="width:27pt" class="btn btn-danger">?</button>
-  <button type="button" style="width:27pt" class="btn btn-danger">?</button>
+  <br><br>%>
 
-  <br><br>
+
   <button id="toggle4" type="button" style="width:27pt" class="btn btn-info" onclick="myFunction4()">1</button>
   <button id="toggle5" type="button" style="width:27pt" class="btn btn-info" onclick="myFunction5()">1</button>
   <button id="toggle6" type="button" style="width:27pt" class="btn btn-info" onclick="myFunction6()">1</button>
@@ -163,7 +236,7 @@
   <br>
 현재스핀크값
   <button onclick="location.href='spinksum'">Home</button>
-
+<!--
   <div class="new">
     <div class="buttons">
       <button class="float_right" onclick="location.href='/spink'">Spink</button>
@@ -247,13 +320,19 @@
                 <li><a href="#">3</a></li>
               </ul>
             </div>
-          </div>
+          </div> -->
 <!-- main end -->
 </div>
-
+<script>a();</script> <!--사라지게 해놓기 ㅋㅋ-->
 <footer>
   <% include ../partials/spinkfooter %>
 </footer>
 
 </body>
 </html>
+
+<%#
+<a style="color:deeppink;" onclick="this.nextSibling.style.display=(this.nextSibling.style.display=='none')?'block':'none';"href="javascript:void(0)">
+... 더 읽기</a><div style="DISPLAY: none">내용내용
+  <a onclick="this.parentNode.style.display='none';" href="javascript:void(0)">
+  접기</a>%>
