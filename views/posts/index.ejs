@@ -23,7 +23,7 @@
       <button class="float_right" onclick="location.href='/logout'">Logout</button>
       <button class="float_right" onclick="location.href='/users/<%= user._id %>'">My Profile (<%= user.nickname %>)</button>
     <% } else { %>
-      <button class="float_right" onclick="location.href='/spink'">Spink</button> 
+      <button class="float_right" onclick="location.href='/spink'">Spink</button>
       <button class="float_right" onclick="location.href='/login'">Login</button> <!--CHECK THE ERROR : 경로에서 /를 빼면 홈 첫화면에서는 문제가 없지만, 다른 화면, 예를들어서 특정키워드로 검색한 후 새로 가입하려하거나 로그인하거나 할때, 에러남  -->
       <button class="float_right" onclick="location.href='/users/new'">Sign Up</button> <!--CHECK THE ERROR :  -->
     <% } %>

@@ -38,7 +38,6 @@ function myFunction0(){
       }
     }
 
-
     function myFunction1() {
         var change = document.getElementById("toggle1");
         if (change.innerHTML == "2")
@@ -216,6 +215,12 @@ $(document).ready(function(){
     });
 });
 
+$(document).ready(function(){
+    $("#button8").click(function(){
+
+      $("#div8").show("slow");
+    });
+});
 
 //Hide 관련 함수 정의
 
@@ -233,6 +238,11 @@ $(document).ready(function(){
       $("#div4").hide();
       $("#div6").hide();
       $("#div7").hide();
+      $("#div8").hide();
+      var change1 = document.getElementById("btText_01");
+      change1.innerHTML = "?";
+      document.getElementById("text_01").innerHTML ="";
+      document.getElementById("text_02").innerHTML ="";
     });
 });
 
@@ -245,6 +255,7 @@ function a(){
    $("#div4").hide();
    $("#div6").hide();
    $("#div7").hide();
+   $("#div8").hide();
    j = 2;
  }
 }
@@ -273,6 +284,21 @@ function btn7Hide(){
   $("#divBtn7").hide();
 }
 
+window.onload = function(){
+function genRdSpink(){
+  var result1 = document.getElementById("rdTest1");
+  var result2 = document.getElementById("rdTest2");
+  var result3 = document.getElementById("rdTest3");
+  result1.innerHTML = Math.floor(Math.random() * 3) + 1;
+  result2.innerHTML = Math.floor(Math.random() * 3) + 1;
+  result3.innerHTML = Math.floor(Math.random() * 3) + 1;
+  }
+
+var rdSpinkNum = setInterval(function(){genRdSpink(); }, 1000); //이렇게 해도 함수는 호출된 것이고 실행됨.. 신기함.
+function stopGen() {
+    clearInterval(rdSpinkNum);
+}
+};
 //
 // function spinkEx(){
 //   if(ckNum == 1){

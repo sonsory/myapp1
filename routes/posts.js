@@ -1,12 +1,12 @@
 var express   = require('express');
 var router    = express.Router();
 var mongoose  = require('mongoose');
-var Post      = require('../models/Post'); console.log("routes/posts 실행");
+var Post      = require('../models/Post'); console.log("routes/posts 에서 var Post 실행");
 var Counter   = require('../models/Counter');
 var async     = require('async');
 var User      = require('../models/User');
 
-router.get('/', function(req, res){ //console.log("app.get : req_eventCount : ", req._eventCount);
+router.get('/', function(req, res){ console.log("app.get : req_eventCount : ", req._eventCount);
   var visitorCounter = null;
   var page = Math.max(1, req.query.page)>1?parseInt(req.query.page):1;
   var limit = Math.max(1, req.query.limit)>1?parseInt(req.query.page):10;

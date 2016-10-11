@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <h3><% include ../partials/spinkhead %> </h3>
+    <% include ../partials/spinkhead %>
+    <script type="text/javascript" src="/js/spink.js"></script>
 
   </head>
   <body>
@@ -24,7 +25,7 @@
       <div class="w3-container">
         스핀크 게임의 룰은 '매우 단순'합니다.
         30초면 스핀크 룰을 이해할 수 있습니다.
-        <div align="right"><button id="button4" style="width:60pt" class="btn btn-default" onclick="button4TextEx()">더읽기</button></div><p></P>
+        <div align="right" style="text-decoration:underline; color:blue;"><button type="button"  id="button4" style="width:60pt" class="btn btn-link" onclick="button4TextEx()">더읽기</button></div><p></P>
         <div id="div4" >
           <div style="position:relative; top:-6; background-color:#cccccc; margin:0; padding:1px;"></div><p></p>
         <p><h2><small>스핀크 룰</small></h2> </b></p> <!--SPINK's Rules-->
@@ -33,38 +34,60 @@
         <p><b>룰C.</b> 다른 숫자 두개가 만나면* 다른 숫자가 된다.</p>
               <div style="font-size:6px;"><p>*스핀크 연산(@)을 하면</p></div>
         <br>
-        이해하셨죠? <br> 그렇다면 아래의 빨간색 칸에 들어갈 숫자는 무엇일까요?<br><br>
+        이해하셨죠? <br> 그렇다면 아래의 <button type="button" class="btn btn-danger btn-xs">?</button>에 들어갈 숫자는 무엇일까요?<br><br><p></p>
               <div style="width:250px; margin: 0 auto;">
                 <button type="button" style="width:27pt" class="btn btn-success">2</button> 와
                 <button type="button" style="width:27pt" class="btn btn-warning">1</button> 이 만나면?
                 <button id="btText_01" type="button" style="width:27pt" class="btn btn-danger">?</button>&nbsp&nbsp<text id="text_01" style="color:red; font-size:8px;"></text>
               </div>
-        <br>파란색 칸을 클릭해서 빨간색 칸에 들어갈 숫자를 맞춰보세요.<br><br>
+        <br><br><button type="button" style="width:20px; height:22px" class="btn btn-info btn-xs">?</button>을 클릭해서
+              <button type="button" style="width:20px; height:22px" class="btn btn-danger btn-xs">?</button>에 들어갈 숫자를 맞춰보세요.<br><br><br>
               <div style="margin: 0 auto; text-align:center;">
                   <button id="btText_02" type="button" style="width:27pt" class="btn btn-info" onclick="myFunction0()">?</button>
-                  <button type="button" style="width:45pt" class="btn btn-default" onclick="textFunc01()">확인</button><br><br>
+                  <button id="button8" type="button" style="width:45pt" class="btn btn-default" onclick="textFunc01()">확인</button><br><br>
                   <p id="text_02" style="color:red;font-size:12px;"></p>
               </div>
+        <div id="div8">
+        위의 스핀크룰만 알아도 쉽게 게임에 참여할 수 있습니다. 위의 예제에서
+        <button type="button" class="btn btn-success btn-xs">2</button>의 숫자는 이미 참여했던 사람들의 숫자로 스핀크연산을 해서 만들어진 숫자입니다. 실제 게임시 매순간 변화되고 유저에게 보여지지 않습니다.
+        <br>가위바위보와 같습니다.
+        <button type="button" style="width:20px; height:22px" class="btn btn-success btn-xs"></button>의 숫자를 예상하고 내가 선택한 숫자
+        <button type="button" class="btn btn-warning btn-xs">1</button>과 만나
+        <button type="button" class="btn btn-danger btn-xs">?</button>에 무슨 숫자가
+        생성될지 맞추는 것이 전부입니다.
+        그 값을
+        <button type="button" class="btn btn-info btn-xs">?</button>에서 선택하면 됩니다.
+        <br>게임에선 3개의 숫자를 맞춰야 합니다. 유저가 맞춘 개수에 따라 오늘의 능력치가 부여되고 오늘의 매치에 자동으로 참여하게 됩니다. 매치 결과에 따라 승/패가 기록됩니다. 아래의 숫자칸을 채워 게임에 바로 참여해보세요. 오늘 승률이 가장 높은 분에게
+        <text style="color:red;">Today's Aword</text> 를 드립니다.<br><br>
+      </div> <!-- div8 end -->
 
-        위의 스핀크룰만 알아도 쉽게 게임에 참여할 수 있습니다. 위의 예제에서 녹색칸의 숫자는 이미 참여했던 사람들의 숫자로 스핀크연산을 해서 만들어져 있습니다. 매순간 변화되고 보여지지 않습니다.
-        <br> 가위바위보와 같습니다. 녹색칸의 숫자를 예상하고 내가 넣은 황색칸의 숫자와 만나 빨간칸에 무슨 숫자가 생성될 지 예측하고 그 값을 하늘색 칸에서 선택하면 됩니다.<br> 아래의 숫자칸을 채워 게임에 바로 참여해보세요.<br><br>
-        <div style="position:relative; top:-6; background-color:#cccccc; margin:0; padding:1px;"></div><p></p>
+      <div style="position:relative; top:-6; background-color:#cccccc; margin:0; padding:1px;"></div><p></p>
 
-        <div id="divBtn1_1" style="float:right"><text style="font-size:10px; color:red;">스핀크 게임에 대해 더 자세히 알고 싶다면 클릭!!</text></div><br>
+        <div id="divBtn1_1" style="float:right"><text style="font-size:10px; color:red;">스핀크 게임에 대해 더 자세히 알고 싶다면 클릭!!</text></div><!--divBtn1_1--><br>
 
         <div class="wrapper">
           <div class="contents"><h2><small>스핀크 게임</small></h2></div>
           <div class="sidebar"><div id="divBtn1"><button id="button1" style="width:90pt;" class="btn btn-default" >상세</button></div><!--divBtn1 end--></div>
         </div>
-
+<div> !!!!<p id="rdTest1"> </p><p id="rdTest2"> </p><p id="rdTest3"> </p> <button type="button" style="width:45pt" class="btn btn-default" onclick="stopGen()">STOP</button></div>
         <div id="div1">
 
                     스핀크는 게임에 참여한 모든 유저가 선택한 숫자들(1~3)로 거대한 체인이 만들어집니다. 유저는 황색칸과 하늘 색칸만 채우면 됩니다.
                     유저가 선택한 황색칸의 숫자조합은 순차적으로 서버에 등록되고, 순차적인 스핀크 연산을 통해 녹색 칸에 위치한 숫자가 실시간으로 만들어집니다. 이 녹색칸의 숫자는 유저에게 보여지지 않습니다.
                     유저는 이 숫자를 예측해야 합니다. 가위바위보처럼요. 이후 황색 칸을 클릭하여 숫자를 선택하고, 하늘색 칸을 클릭해서 두 숫자(녹색, 황색칸의 숫자)가 만나 생성될 '예상 숫자'를 선택합니다.
-                    <br><br>예를들어 아래의 예제에서는 유저가 <br>
-                    황 색 칸 : 1, 2, 2 을 선택했고 그 결과값
-                    하늘색칸 : 2, 1, 3 을 선택했습니다.
+                    <br><br>
+                    예를들어 아래의 예제에서는 유저가
+                    <button type="button" class="btn btn-warning btn-xs">1</button>&nbsp;
+                    <button type="button" class="btn btn-warning btn-xs">2</button>&nbsp;
+                    <button type="button" class="btn btn-warning btn-xs">2</button>&nbsp;
+                    와,
+                    <br>
+                    <button type="button" class="btn btn-info btn-xs">2</button>&nbsp;
+                    <button type="button" class="btn btn-info btn-xs">1</button>&nbsp;
+                    <button type="button" class="btn btn-info btn-xs">3</button>&nbsp;
+                    를 선택했습니다.
+
+                    이것이 의미하는 바는, ... 하면서 빨간색 녹색 예를들어서 설명해갈것.
 
                     <div style="width: 120px; margin: 0 auto;">
                       <br><br>
@@ -193,20 +216,17 @@
 </div> <!--<div class="w3-container">-->
 
   <div class="w3-container w3-blue">
-    <div class="buttons" style="float: right; margin-right: 10px; height:30pt; display:inline-block"><button type="button" class="btn btn-link"><p style="color:white;">Join</p></button><button type="button" class="btn btn-link"><p style="color:white;">Login</p></button></div>
+    <div class="buttons" style="float: right; margin-right: 10px; height:30pt; display:inline-block"><button type="button" class="btn btn-link" onclick="location.href='/users/newspinkjoin'"><p style="color:white;">Join</p></button><button type="button" class="btn btn-link"><p style="color:white;">Login</p></button></div>
   </div>
 </div>
-
-
+<br><br>
 
 <div>
+  <div style="position:relative; top:-6; background-color:#cccccc; margin:0; padding:1px;"></div><p></p>
+<p><h2><small>스핀크 게임</small></h2> </b></p>
 
-  <div style="width: 120px; margin: 0 auto;">
-  <br><br>
-  <%# <button type="button" style="width:27pt" class="btn btn-success">?</button>
-  <button type="button" style="width:27pt" class="btn btn-success">?</button>
-  <button type="button" style="width:27pt" class="btn btn-success">?</button>%>
 
+  <div style="width: 120px; margin:auto;">
 
   <br><br>
   <button id="toggle1" type="button" style="width:27pt" class="btn btn-warning" onclick="myFunction1()">1</button>
@@ -214,114 +234,171 @@
   <button id="toggle3" type="button" style="width:27pt" class="btn btn-warning" onclick="myFunction3()">1</button>
 
   <br><br>
-  <%# <button type="button" style="width:27pt" class="btn btn-danger">?</button>
-  <button type="button" style="width:27pt" class="btn btn-danger">?</button>
-  <button type="button" style="width:27pt" class="btn btn-danger">?</button>
-  <br><br>%>
-
 
   <button id="toggle4" type="button" style="width:27pt" class="btn btn-info" onclick="myFunction4()">1</button>
   <button id="toggle5" type="button" style="width:27pt" class="btn btn-info" onclick="myFunction5()">1</button>
   <button id="toggle6" type="button" style="width:27pt" class="btn btn-info" onclick="myFunction6()">1</button>
-
+  <br><br>
+  <div style="margin:auto;"><button type="button" style="width:57pt; margin-left:22px" class="btn btn-default" onclick="move()" >Submit</button></div>
+  <p></p>
+  <div id="myProgress">
+    <div id="myBar"></div>
+  </div>
+  <br><br>
   </div>
 </div>
-    <h4>Fight</h4>
+<br>
+
+
+    <div style="position:relative; top:-6; background-color:#cccccc; margin:0; padding:1px;"></div><p></p>
+  <p><h2><small>Today's Score</h2> </b></p>
+    <br><br>
+    <div style="text-align:center"><button type="button" style="width:130px" class="btn btn-success">승 : 178</button> &nbsp; &nbsp;
+    <button type="button" style="width:130px" class="btn btn-danger">패 : 220</button>
+    </div>
     <br>
-    <button onclick="move()">Fight</button>
-    <div id="myProgress">
-     <div id="myBar"></div>
+    <div class="container">
+      <div class="alert alert-success fade in" style="margin-bottom:0px;">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>apple 승!</strong> apple 님이 samsung 님에게 이겼습니다. 대전시간 12초.
+      </div>
+      <div class="alert alert-info fade in" style="margin-bottom:0px;">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>facebook VS naver </strong> facebook 님과 naver 님 전투중.
+      </div>
+      <div class="alert alert-warning fade in" style="margin-bottom:0px;">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>google VS MS </strong> google 님과 MS 님 전투중. google 님이 이길 확률 78%
+      </div>
+      <div class="alert alert-danger fade in" style="margin-bottom:0px;">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>samsung 패!</strong>  samsung 님이 apple 님에게 졌습니다. 대전시간 12초.
+      </div>
+    </div>
+    <br><br>
+
+
+    <div style="position:relative; top:-6; background-color:#cccccc; margin:0; padding:1px;"></div><p></p>
+  <p><h2><small>Today's Abilities</h2> </b></p>
+    <br>
+    <div class="table-responsive" style="max-width:600px">
+    <table class="w3-table-all notranslate" style="text-align:center; font-size:12pt; width-min:340px ">
+      <tr>
+        <th style="width:25%; text-align:center;">&nbsp;</th>
+        <th style="width:25%; font-size:12pt; text-align:center; vertical-align: middle;">오늘</th>
+        <th style="width:25%; font-size:12pt; text-align:center; vertical-align: middle;">어제</th>
+        <th style="width:25%; font-size:12pt; text-align:center; vertical-align: middle;">누적<p></p>평균</th>
+
+      </tr>
+      <tr >
+        <td style="text-align:center;"><strong>힘</strong></td>
+        <td style="text-align:center;">77</td>
+        <td style="text-align:center;">82</td>
+        <td style="text-align:center;">95</td>
+
+      </tr>
+      <tr>
+        <td style="text-align:center;"><strong>민첩</strong></td>
+        <td style="text-align:center;">73</td>
+        <td style="text-align:center;">78</td>
+        <td style="text-align:center;">87</td>
+
+      </tr>
+      <tr>
+        <td style="text-align:center;"><strong>방어</strong></td>
+        <td style="text-align:center;">69</td>
+        <td style="text-align:center;">74</td>
+        <td style="text-align:center;">83</td>
+
+      </tr>
+      <tr>
+        <td style="text-align:center;"><strong>적중</strong></td>
+        <td style="text-align:center;">54</td>
+        <td style="text-align:center;">59</td>
+        <td style="text-align:center;">65</td>
+      </tr>
+      <tr>
+        <td style="text-align:center;"><strong>운</strong></td>
+        <td style="text-align:center;">67</td>
+        <td style="text-align:center;">72</td>
+        <td style="text-align:center;">83</td>
+
+      </tr>
+      <tr>
+        <td style="text-align:center;"><strong>체력</strong></td>
+        <td style="text-align:center;">68</td>
+        <td style="text-align:center;">73</td>
+        <td style="text-align:center;">81</td>
+
+      </tr>
+    </table>
+    </div>
+    <br><br>
+
+
+    <div style="position:relative; top:-6; background-color:#cccccc; margin:0; padding:1px;"></div><p></p>
+  <p><h2><small>Today's Rangking</h2> </b></p>
+    <br>
+    <div class="table-responsive" style="max-width:600px">
+    <table class="w3-table-all notranslate" style="text-align:center; font-size:12pt; width-min:340px ">
+      <tr>
+        <th style="width:25%; font-size:12pt; text-align:center; vertical-align: middle;">NO</th>
+        <th style="width:25%; font-size:12pt; text-align:center; vertical-align: middle;">ID</th>
+        <th style="width:25%; font-size:12pt; text-align:center; vertical-align: middle;">승수</th>
+        <th style="width:25%; font-size:12pt; text-align:center; vertical-align: middle;">누적<P></p>승수</th>
+
+      </tr>
+      <tr>
+        <td style="text-align:center;"><strong>1</strong></td>
+        <td style="text-align:center;">google</td>
+        <td style="text-align:center;">234</td>
+        <td style="text-align:center;">95K</td>
+
+      </tr>
+      <tr>
+        <td style="text-align:center;"><strong>2</strong></td>
+        <td style="text-align:center;">facebook</td>
+        <td style="text-align:center;">212</td>
+        <td style="text-align:center;">87K</td>
+
+      </tr>
+      <tr>
+        <td style="text-align:center;"><strong>3</strong></td>
+        <td style="text-align:center;">apple</td>
+        <td style="text-align:center;">189</td>
+        <td style="text-align:center;">83K</td>
+
+      </tr>
+      <tr>
+        <td style="text-align:center;"><strong>4</strong></td>
+        <td style="text-align:center;">netflix</td>
+        <td style="text-align:center;">59</td>
+        <td style="text-align:center;">65K</td>
+      </tr>
+      <tr>
+        <td style="text-align:center;"><strong>5</strong></td>
+        <td style="text-align:center;">MS</td>
+        <td style="text-align:center;">182</td>
+        <td style="text-align:center;">83K</td>
+
+      </tr>
+      <tr>
+        <td style="text-align:center;"><strong>6</strong></td>
+        <td style="text-align:center;">KIC</td>
+        <td style="text-align:center;">175</td>
+        <td style="text-align:center;">81K</td>
+
+      </tr>
+    </table>
     </div>
 
   <br>
-현재스핀크값
-  <button onclick="location.href='spinksum'">Home</button>
-<!--
-  <div class="new">
-    <div class="buttons">
-      <button class="float_right" onclick="location.href='/spink'">Spink</button>
-    </div>
-    <h3>SPINK</h3>
-    <form class="checkValidation" action="/#" method="post">
-      <div class="inputs">
-        <div class="floats">
-          <label>Num1*</label>
-          <input class="cvRequired" type="text" name="user[email]" cvRqErrMsg="Email is required." cvRqErrTo="#cvErrEmail" value="<%= formData?formData.email:"" %>">
-          <div id="cvErrEmail" class="message"><%= emailError?emailError:"" %></div>
-        </div>
-        <div class="floats">
-          <label>Num2*</label>
-          <input class="cvRequired" type="text" name="user[nickname]" cvRqErrMsg="Nickname is required." cvRqErrTo="#cvErrNickname" value="<%= formData?formData.nickname:"" %>">
-          <div id="cvErrNickname" class="message"><%= nicknameError?nicknameError:"" %></div>
-        </div>
-        <div class="floats">
-          <label>Num3*</label>
-          <input class="cvRequired cvMatch" type="password" name="user[password]" cvRqErrMsg="Password is required." cvRqErrTo="#cvErrPassword"
-            cvMatW="#cvMatWPassword" cvMatErrMsg="Password confirmation doesn't match." cvMatErrTo="#cvErrPasswordConfirmation" value="">
-            <div id="cvErrPassword" class="message"><%= passwordError?passwordError:"" %></div>
-        </div>
-        <div class="floats">
-          <label>your name or email*</label>
-          <input id="cvMatWPassword" type="password" name="user[passwordConfirmation]" value="">
-          <div id="cvErrPasswordConfirmation" class="message"></div>
-        </div>
-        <p><small>*Required</small></p>
-      </div>
-        <div class="buttons">
-            <button class="float_right" onclick="location.href='/spink'">Spink</button>
-        </div>
-    </form>
+  <div style="position:relative; top:-6; background-color:#cccccc; margin:0; padding:1px;"></div><p></p>
+<p><h2><small>Today's Battles List</h2> </b></p>
+  <br>
+  <div style="text-align:right"><button style="width:120px" class="btn btn-default" onclick="location.href='spinksum'">리스트보기</button>
+
 </div>
-<div class="col-md-3">
-            <button type="button" class="btn btn-success btn-block">Success</button>
-          </div><br><br>
-
-
-          <div class="container">
-            <h3>Button Groups - Set Sizes</h3>
-            <p>Add class .btn-group-* to size all buttons in a button group.</p>
-            <h3>Large Buttons:</h3>
-            <div class="btn-group btn-group-lg">
-              <button type="button" class="btn btn-primary">Apple</button>
-              <button type="button" class="btn btn-primary">Samsung</button>
-              <button type="button" class="btn btn-primary">Sony</button>
-            </div>
-            <h3>Extra Small Buttons:</h3>
-            <div class="btn-group btn-group-xs">
-              <button type="button" class="btn btn-primary">Apple</button>
-              <button type="button" class="btn btn-primary">Samsung</button>
-              <button type="button" class="btn btn-primary">Sony</button>
-            </div>
-          </div>
-
-
-          <div class="btn-group">
-            <div class="btn-group">
-              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-              1 <span class="caret"></span></button>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-              </ul>
-            </div>
-            <div class="btn-group">
-              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-              1 <span class="caret"></span></button>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-              </ul>
-            </div>
-            <div class="btn-group">
-              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-              1 <span class="caret"></span></button>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-              </ul>
-            </div>
-          </div> -->
-<!-- main end -->
 </div>
 <script>a();</script> <!--사라지게 해놓기 ㅋㅋ-->
 <footer>

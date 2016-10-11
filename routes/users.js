@@ -1,9 +1,10 @@
 var express   = require('express');
 var router    = express.Router();
 var mongoose  = require('mongoose');
-var User      = require('../models/User');
+var User      = require('../models/User'); console.log("routes/users 에서 var User 실행");
 var async     = require('async');
 
+//시작이 views 인 듯.. 
 //set user route
 router.get('/new', function(req,res){ console.log("유저 가입 페이지 접속"); // /new로 들어오면 호출되는 부분.
   res.render('users/new',{    // res.render 의 경우 주소가 /없이 시작, res.redirect의 경우 주소가 /가 있고 시작.
@@ -15,34 +16,45 @@ router.get('/new', function(req,res){ console.log("유저 가입 페이지 접�
                         }
   );
 }); //new
-router.post('/', checkUserRegValidation, function(req, res, next){
+
+
+
+
+
+router.post('/', checkUserRegValidation, function(req, res, next){ console.log("router.post('/'");
   User.create(req.body.user, function (err, user){
     if(err) return res.json({success:false, message:err});
     req.flash("loginMessage", "Thank you for registration!");
     res.redirect('/login');
   });
 }); //create
-router.get('/:id', isLoggedIn, function(req, res){
+
+router.get('/newspinkjoin', function(req,res){ console.log("유저's' 가입 페이지 접속"); // /new로 들어오면 호출되는 부분.
+  res.render('users/spinkernew',{    // res.render 의 경우 주소가 /없이 시작, res.redirect의 경우 주소가 /가 있고 시작.
+                          formData: req.flash('formData')[0],
+                          emailError: req.flash('emailError')[0],
+                          nicknameError: req.flash('nicknameError')[0],
+                          passwordError: req.flash('passwordError')[0]
+
+                        }
+  );
+}); //이게 재밌는게, 이 라우터가 위에 위치하면, 작동하고 바로 아래, /:id 라우터 이하에위치하면 작동안함 ㅋㅋ 왜?
+
+
+router.get('/:id', isLoggedIn, function(req, res){ console.log("router.post('/'");
   User.findById(req.params.id, function (err,user){
     if(err) return res.json({success:false, message:err});
     res.render("users/show", {user: user});
   });
 }); //show
-// router.get('/:id', isLoggedIn, function(req, res){
-//   User.findById(req.params.id, function (err,user){
-//     if(err) return res.json({success:false, message:err});
-//     res.render("users/spink", {user: user});
-//   });
-// }); //spink
-router.get('/:id', isLoggedIn, function(req, res){
-  User.findById(req.params.id, function (err,user){
-    if(err) return res.json({success:false, message:err});
-    res.render("users/spink_sum", {user: user});
-  });
-}); //spink
 
 
-router.get('/:id/edit', isLoggedIn, function(req,res){
+
+
+
+
+
+router.get('/:id/edit', isLoggedIn, function(req,res){ console.log("router.get('/:id/edit'");
   if(req.user._id != req.params.id) return res.json({success:false, message:"Unauthrized Attempt"});
   User.findById(req.params.id, function (err, user){
     if(err) return res.json({success:false, message:err});
@@ -57,7 +69,7 @@ router.get('/:id/edit', isLoggedIn, function(req,res){
   });
 }); //edit
 
-router.put('/:id',isLoggedIn, checkUserRegValidation, function(req, res){
+router.put('/:id',isLoggedIn, checkUserRegValidation, function(req, res){ console.log("router.put('/:id'");
   if(req.user._id != req.params.id) return res.json({success:false, message:"Unauthrized Attempt"});
   User.findById(req.params.id, function(err, user) {
     if(err) return res.json({success:"false", message:err});
@@ -76,6 +88,26 @@ router.put('/:id',isLoggedIn, checkUserRegValidation, function(req, res){
     }
   });
 }); //update
+
+
+
+
+
+
+
+// router.get('/newspinkjoin', function(req,res){ console.log("스핀커 유저 가입 페이지 접속"); // /new로 들어오면 호출되는 부분.
+//   res.render('users/newspinker',{    // res.render 의 경우 주소가 /없이 시작, res.redirect의 경우 주소가 /가 있고 시작.
+//                           formData: req.flash('formData')[0],
+//                           emailError: req.flash('emailError')[0],
+//                           nicknameError: req.flash('nicknameError')[0],
+//                           passwordError: req.flash('passwordError')[0]
+//
+//                         }
+//   );
+// }); //new
+
+
+
 
 
 function isLoggedIn(req, res, next){
